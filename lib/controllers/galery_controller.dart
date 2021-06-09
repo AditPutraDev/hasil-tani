@@ -2,8 +2,8 @@ part of 'controllers.dart';
 
 class GaleryController extends GetxController {
   final RxList<Galery> galeryList = <Galery>[].obs;
+  var isLoading = true.obs;
 
-  RxBool isLoading = true.obs;
   @override
   void onInit() {
     fetchGalery();
@@ -12,15 +12,14 @@ class GaleryController extends GetxController {
 
   void fetchGalery() async {
     try {
+      isLoading(true);
       await GaleryService.getGalery().then((value) {
         if (value is List<Galery>) {
           galeryList.addAll(value);
-        } else {
-          print('else');
         }
       });
-    } catch (e) {
-      print('catch');
+    } finally {
+      isLoading(false);
     }
   }
 }

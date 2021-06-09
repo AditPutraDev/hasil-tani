@@ -9,29 +9,34 @@ class GaleryPage extends StatelessWidget {
       body: ListView(
         children: [
           Obx(
-            () => Container(
-              child: Column(
-                children: [
-                  ...galeryController.galeryList.map((item) {
-                    return GestureDetector(
-                      onTap: () => Get.to(
-                        DetailPage(item),
-                      ),
-                      child: Card(
-                        child: Column(
-                          children: [
-                            Text(item.description ?? '-'),
-                            Text(item.name ?? '-'),
-                            Text(item.type ?? '-'),
-                            Image.network(item.foto ?? '-'),
-                          ],
-                        ),
-                      ),
-                    );
-                  })
-                ],
-              ),
-            ),
+            () {
+              if (galeryController.isLoading.value == true)
+                return Loading.threeBounce;
+              else
+                return Container(
+                  child: Column(
+                    children: [
+                      ...galeryController.galeryList.map((item) {
+                        return GestureDetector(
+                          onTap: () => Get.to(
+                            () => DetailPage(item),
+                          ),
+                          child: Card(
+                            child: Column(
+                              children: [
+                                Text(item.description ?? '-'),
+                                Text(item.name ?? '-'),
+                                Text(item.type ?? '-'),
+                                Image.network(item.foto ?? '-'),
+                              ],
+                            ),
+                          ),
+                        );
+                      })
+                    ],
+                  ),
+                );
+            },
           ),
         ],
       ),

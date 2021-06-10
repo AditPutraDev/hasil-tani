@@ -1,22 +1,59 @@
 part of 'pages.dart';
 
+enum DetailInfoType { news, galery, dictionary }
+
 class DetailPage extends StatelessWidget {
-  final Galery galery;
-  DetailPage(this.galery);
+  final DetailInfoType type;
+  final Galery? galery;
+  final News? news;
+  final Dictionary? dictionary;
+  DetailPage(this.type, {this.galery, this.news, this.dictionary});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(galery.name ?? '-'),
+        title: Text((type == DetailInfoType.galery)
+            ? galery?.name ?? '-'
+            : (type == DetailInfoType.news)
+                ? news?.title ?? '-'
+                : dictionary?.istilah ?? '-'),
       ),
-      body: Column(
+      body: ListView(
         children: [
-          Container(
-            width: double.infinity,
-            height: 100,
-            child: Image.network(galery.foto ?? '-'),
-          ),
-          Text(galery.description ?? '-')
+          (type == DetailInfoType.galery)
+              ? Card(
+                  child: Column(
+                    children: [
+                      Container(
+                        width: double.infinity,
+                        height: 100,
+                        child: Image.network(galery?.foto ?? '-'),
+                      ),
+                      Text(galery?.description ?? '-')
+                    ],
+                  ),
+                )
+              : (type == DetailInfoType.news)
+                  ? Card(
+                      child: Column(
+                        children: [
+                          Container(
+                            width: double.infinity,
+                            height: 100,
+                            child: Image.network(news?.image ?? '-'),
+                          ),
+                          Text(news?.description ?? '-')
+                        ],
+                      ),
+                    )
+                  : Card(
+                      child: Column(
+                        children: [
+                          Text(dictionary?.istilah ?? '-'),
+                          Text(dictionary?.detail ?? '-'),
+                        ],
+                      ),
+                    ),
         ],
       ),
     );

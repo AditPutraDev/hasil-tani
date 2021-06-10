@@ -18,9 +18,8 @@ class GaleryPage extends StatelessWidget {
                     children: [
                       ...galeryController.galeryList.map((item) {
                         return GestureDetector(
-                          onTap: () => Get.to(
-                            () => DetailPage(item),
-                          ),
+                          onTap: () => Get.to(() =>
+                              DetailPage(DetailInfoType.galery, galery: item)),
                           child: Card(
                             child: Column(
                               children: [

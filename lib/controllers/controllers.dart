@@ -5,3 +5,4 @@ import 'package:hasil_tani/ui/widgets/widgets.dart';
 
 part 'galery_controller.dart';
 part 'dictionary_controller.dart';
+part 'news_controller.dart';

@@ -14,12 +14,17 @@ class DictionaryPage extends StatelessWidget {
               child: Column(
                 children: [
                   ...dictioncaryController.dictionaryList.map((item) {
-                    return Column(
-                      children: [
-                        Text(item.istilah ?? '-'),
-                        Text(item.detail ?? '-'),
-                        Text(item.type ?? '-'),
-                      ],
+                    return GestureDetector(
+                      onTap: () => Get.to(() => DetailPage(
+                          DetailInfoType.dictionary,
+                          dictionary: item)),
+                      child: Column(
+                        children: [
+                          Text(item.istilah ?? '-'),
+                          Text(item.detail ?? '-'),
+                          Text(item.type ?? '-'),
+                        ],
+                      ),
                     );
                   })
                 ],

@@ -8,6 +8,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int selectedPage = 0;
   PageController pageController = PageController(initialPage: 0);
+  final NewsController newsController = Get.put(NewsController());
   final GaleryController galeryController = Get.put(GaleryController());
   final DictionaryController dictionaryController =
       Get.put(DictionaryController());
@@ -37,7 +38,7 @@ class _MainPageState extends State<MainPage> {
                   child: DictionaryPage(),
                 ),
                 Center(
-                  child: NewsPage(),
+                  child: SplashPage(),
                 ),
               ],
             ),

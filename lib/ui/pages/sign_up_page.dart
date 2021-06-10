@@ -3,13 +3,7 @@ part of 'pages.dart';
 class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final TextEditingController nameController = new TextEditingController();
-    final TextEditingController emailController = new TextEditingController();
-    final TextEditingController phoneController = new TextEditingController();
-    final TextEditingController passwordController =
-        new TextEditingController();
-    final TextEditingController password2Controller =
-        new TextEditingController();
+    final authController = Get.find<AuthController>();
     return Scaffold(
       body: ListView(
         children: [
@@ -32,7 +26,7 @@ class SignUpPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 67),
                   child: TextField(
-                    controller: nameController,
+                    controller: authController.username,
                     style: TextStyle(color: Color(0xFF43A8FC)),
                     decoration: new InputDecoration(
                         border: new OutlineInputBorder(
@@ -48,7 +42,7 @@ class SignUpPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 23),
                   child: TextField(
-                    controller: emailController,
+                    controller: authController.email,
                     style: TextStyle(color: Color(0xFF43A8FC)),
                     decoration: new InputDecoration(
                         border: new OutlineInputBorder(
@@ -65,9 +59,8 @@ class SignUpPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 23),
                   child: TextField(
-                    controller: phoneController,
+                    controller: authController.fullname,
                     style: TextStyle(color: Color(0xFF43A8FC)),
-                    keyboardType: TextInputType.phone,
                     decoration: new InputDecoration(
                         border: new OutlineInputBorder(
                           borderRadius: const BorderRadius.all(
@@ -76,13 +69,13 @@ class SignUpPage extends StatelessWidget {
                         ),
                         contentPadding: EdgeInsets.fromLTRB(30, 16, 0, 16),
                         hintStyle: new TextStyle(color: Colors.grey[800]),
-                        hintText: "Phone Number"),
+                        hintText: "Fullname"),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 23),
                   child: TextField(
-                    controller: passwordController,
+                    controller: authController.sex,
                     obscureText: true,
                     style: TextStyle(color: Color(0xFF43A8FC)),
                     decoration: new InputDecoration(
@@ -93,11 +86,11 @@ class SignUpPage extends StatelessWidget {
                         ),
                         contentPadding: EdgeInsets.fromLTRB(30, 16, 0, 16),
                         hintStyle: new TextStyle(),
-                        hintText: "Password"),
+                        hintText: "Sex"),
                   ),
                 ),
                 TextField(
-                  controller: password2Controller,
+                  controller: authController.address,
                   obscureText: true,
                   style: TextStyle(color: Color(0xFF43A8FC)),
                   decoration: new InputDecoration(
@@ -108,14 +101,44 @@ class SignUpPage extends StatelessWidget {
                       ),
                       contentPadding: EdgeInsets.fromLTRB(30, 16, 0, 16),
                       hintStyle: new TextStyle(),
-                      hintText: "Confirm Password"),
+                      hintText: "Address"),
+                ),
+                SizedBox(height: 24),
+                TextField(
+                  controller: authController.password,
+                  obscureText: true,
+                  style: TextStyle(color: Color(0xFF43A8FC)),
+                  decoration: new InputDecoration(
+                      border: new OutlineInputBorder(
+                        borderRadius: const BorderRadius.all(
+                          const Radius.circular(32),
+                        ),
+                      ),
+                      contentPadding: EdgeInsets.fromLTRB(30, 16, 0, 16),
+                      hintStyle: new TextStyle(),
+                      hintText: "Password"),
                 ),
                 SizedBox(height: 40),
                 MyRaisedButton(
-                  title: 'Sign Up',
-                  icon: Icons.arrow_forward,
-                  onPressed: () {},
-                ),
+                    title: 'Sign Up',
+                    icon: Icons.arrow_forward,
+                    onPressed: () {
+                      if (authController.username.text != '' &&
+                          authController.fullname.text != '' &&
+                          authController.email.text != '' &&
+                          authController.sex.text != '' &&
+                          authController.address.text != '' &&
+                          authController.password.text != '') {
+                        authController.signUp(
+                            authController.username.text,
+                            authController.fullname.text,
+                            authController.email.text,
+                            authController.sex.text,
+                            authController.address.text,
+                            authController.password.text);
+                      }
+                      authController.checkSignUp();
+                    }),
               ],
             ),
           ),

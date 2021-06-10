@@ -6,6 +6,5 @@ import 'package:http/http.dart' as http;
 part 'galery_service.dart';
 part 'news_service.dart';
 part 'dictionary_service.dart';
-part 'auth_services.dart';
 
 const API_URL = 'http://192.168.1.7/flutter-server';

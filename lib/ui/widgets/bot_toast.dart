@@ -3,9 +3,7 @@ part of 'widgets.dart';
 void showBotToastText(text) {
   BotToast.showText(
     text: text.toString(),
-    textStyle: TextStyle(
-      fontSize: 14,
-    ),
+    textStyle: titleToastStyle,
     duration: Duration(seconds: 3),
     borderRadius: BorderRadius.all(Radius.circular(25)),
     clickClose: true,

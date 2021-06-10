@@ -15,3 +15,4 @@ var height = Get.height;
 
 TextStyle blackFontStyle = GoogleFonts.poppins()
     .copyWith(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w500);
+TextStyle titleToastStyle = GoogleFonts.poppins().copyWith(fontSize: 14);

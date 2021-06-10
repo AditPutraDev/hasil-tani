@@ -8,49 +8,66 @@ class AuthController extends GetxController {
   final sex = TextEditingController();
   final address = TextEditingController();
 
-  var isLoading = true.obs;
+  var isLoading = false.obs;
 
   Future<bool> signIn(String username, String password) async {
-    isLoading();
-    var url = Uri.parse(API_URL + '/login.php');
-    final response = await http.post(url, body: {
-      'username': username,
-      'password': password,
-    });
-    var data = json.decode(response.body);
+    try {
+      isLoading(true);
+      var url = Uri.parse(API_URL + '/login.php');
+      final response = await http.post(url, body: {
+        'username': username,
+        'password': password,
+      });
+      var data = json.decode(response.body);
 
-    if (response.statusCode == 200 && data["value"] == 1) {
-      isLoading(false);
-      print(data);
-      Get.to(() => NewsPage());
+      if (response.statusCode == 200 && data["value"] == 1) {
+        print(data);
+        Get.to(() => NewsPage());
+        showBotToastText(data["message"]);
+        isLoading(false);
+        return true;
+      }
       showBotToastText(data["message"]);
-      return true;
+      return false;
+    } finally {
+      isLoading(false);
     }
-    showBotToastText(data["message"]);
-    return false;
   }
 
   Future<bool> signUp(String username, String fullname, String email,
       String sex, String address, String password) async {
-    var url = Uri.parse(API_URL + '/register.php');
-    final response = await http.post(url, body: {
-      'username': username,
-      'full_name': fullname,
-      'email': email,
-      'sex': sex,
-      'address': address,
-      'password': password,
-    });
-    var data = json.decode(response.body);
-    if (response.statusCode == 200 && data["value"] == 1) {
-      isLoading(false);
-      print(data);
-      Get.to(() => NewsPage());
+    try {
+      isLoading(true);
+      var url = Uri.parse(API_URL + '/register.php');
+      final response = await http.post(url, body: {
+        'username': username,
+        'full_name': fullname,
+        'email': email,
+        'sex': sex,
+        'address': address,
+        'password': password,
+      });
+      var data = json.decode(response.body);
+      if (response.statusCode == 200 && data["value"] == 1) {
+        print(data);
+        Get.to(() => NewsPage());
+        showBotToastText(data["message"]);
+        isLoading(false);
+        return true;
+      }
       showBotToastText(data["message"]);
-      return true;
+      return false;
+    } finally {
+      isLoading(false);
     }
-    showBotToastText(data["message"]);
-    return false;
+  }
+
+  void checkSignIn() {
+    if (username.text == '') {
+      showBotToastText('Please fill the username field');
+    } else if (password.text == '') {
+      showBotToastText('Please fill the password field');
+    }
   }
 
   void checkSignUp() {

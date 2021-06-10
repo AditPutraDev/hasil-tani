@@ -75,13 +75,23 @@ class SignInPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 40),
-                MyRaisedButton(
-                  title: 'Sign In',
-                  icon: Icons.arrow_forward,
-                  onPressed: () => authController.signIn(
-                      authController.username.text,
-                      authController.password.text),
-                  //isLoading: _isLoading,
+                Obx(
+                  () => (authController.isLoading.value)
+                      ? Loading.threeBounce
+                      : MyRaisedButton(
+                          title: 'Sign In',
+                          icon: Icons.arrow_forward,
+                          onPressed: () {
+                            if (authController.username.text != '' &&
+                                authController.password.text != '') {
+                              authController.signIn(
+                                  authController.username.text,
+                                  authController.password.text);
+                            }
+                            authController.checkSignIn();
+                          },
+                          // isLoading: authController.isLoading.value
+                        ),
                 ),
                 SizedBox(height: 50),
                 Row(

@@ -119,26 +119,30 @@ class SignUpPage extends StatelessWidget {
                       hintText: "Password"),
                 ),
                 SizedBox(height: 40),
-                MyRaisedButton(
-                    title: 'Sign Up',
-                    icon: Icons.arrow_forward,
-                    onPressed: () {
-                      if (authController.username.text != '' &&
-                          authController.fullname.text != '' &&
-                          authController.email.text != '' &&
-                          authController.sex.text != '' &&
-                          authController.address.text != '' &&
-                          authController.password.text != '') {
-                        authController.signUp(
-                            authController.username.text,
-                            authController.fullname.text,
-                            authController.email.text,
-                            authController.sex.text,
-                            authController.address.text,
-                            authController.password.text);
-                      }
-                      authController.checkSignUp();
-                    }),
+                Obx(
+                  () => (authController.isLoading.value)
+                      ? Loading.threeBounce
+                      : MyRaisedButton(
+                          title: 'Sign Up',
+                          icon: Icons.arrow_forward,
+                          onPressed: () {
+                            if (authController.username.text != '' &&
+                                authController.fullname.text != '' &&
+                                authController.email.text != '' &&
+                                authController.sex.text != '' &&
+                                authController.address.text != '' &&
+                                authController.password.text != '') {
+                              authController.signUp(
+                                  authController.username.text,
+                                  authController.fullname.text,
+                                  authController.email.text,
+                                  authController.sex.text,
+                                  authController.address.text,
+                                  authController.password.text);
+                            }
+                            authController.checkSignUp();
+                          }),
+                ),
               ],
             ),
           ),

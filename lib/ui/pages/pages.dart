@@ -13,3 +13,4 @@ part 'sign_in_page.dart';
 part 'detail_page.dart';
 part 'splash_page.dart';
 part 'sign_up_page.dart';
+part 'galery_tab_page.dart';

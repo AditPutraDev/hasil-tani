@@ -24,37 +24,33 @@ class TabGalery extends StatelessWidget {
                     return item.type == type
                         ? Container(
                             width: 100,
-                            child: Hero(
-                              tag: '${item.idGalery}',
-                              child: Material(
-                                child: InkWell(
-                                  onTap: () => Get.to(
-                                    () => DetailPage(DetailInfoType.galery,
-                                        galery: item),
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        width: 120,
-                                        height: 120,
-                                        margin: EdgeInsets.only(right: 12),
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                          image: DecorationImage(
-                                              image:
-                                                  NetworkImage('${item.foto}'),
-                                              fit: BoxFit.cover),
-                                        ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: 120,
+                                  height: 120,
+                                  margin: EdgeInsets.only(right: 12),
+                                  child: GestureDetector(
+                                    onTap: () => Get.to(
+                                      () => DetailPage(DetailInfoType.galery,
+                                          galery: item),
+                                    ),
+                                    child: Hero(
+                                      tag: '${item.idGalery}',
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(15),
+                                        child: Image.network('${item.foto}',
+                                            height: 120,
+                                            width: 100,
+                                            fit: BoxFit.cover),
                                       ),
-                                      SizedBox(height: 12),
-                                      Text('${item.name}')
-                                    ],
+                                    ),
                                   ),
                                 ),
-                              ),
+                                SizedBox(height: 12),
+                                Text('${item.name}')
+                              ],
                             ),
                           )
                         : SizedBox();

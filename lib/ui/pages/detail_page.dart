@@ -23,23 +23,19 @@ class DetailPage extends StatelessWidget {
           (type == DetailInfoType.galery)
               ? Container(
                   height: height,
-                  child: Hero(
-                    tag: '${galery?.idGalery}',
-                    child: Material(
-                      child: InkWell(
-                        child: Column(
-                          children: [
-                            Container(
-                              width: double.infinity,
-                              height: 240,
-                              child: Image.network('${galery?.foto}',
-                                  fit: BoxFit.cover),
-                            ),
-                            Text(galery?.description ?? '-')
-                          ],
+                  child: Column(
+                    children: [
+                      Container(
+                        width: double.infinity,
+                        height: 240,
+                        child: Hero(
+                          tag: '${galery?.idGalery}',
+                          child: Image.network('${galery?.foto}',
+                              fit: BoxFit.cover),
                         ),
                       ),
-                    ),
+                      Text(galery?.description ?? '-')
+                    ],
                   ),
                 )
               : (type == DetailInfoType.news)

@@ -5,7 +5,6 @@ class AuthController extends GetxController {
   final password = TextEditingController(text: '123456');
   final fullname = TextEditingController();
   final email = TextEditingController();
-  final sex = TextEditingController();
   final address = TextEditingController();
 
   var isLoading = false.obs;
@@ -77,8 +76,6 @@ class AuthController extends GetxController {
       showBotToastText('Please fill the email field');
     } else if (fullname.text == '') {
       showBotToastText('Please fill the fullname field');
-    } else if (sex.text == '') {
-      showBotToastText('Please fill the sex field');
     } else if (address.text == '') {
       showBotToastText('Please fill the address field');
     } else if (password.text == '') {

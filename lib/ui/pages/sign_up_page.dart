@@ -1,9 +1,18 @@
 part of 'pages.dart';
 
-class SignUpPage extends StatelessWidget {
+enum SingingCharacter { pria, wanita }
+
+class SignUpPage extends StatefulWidget {
+  @override
+  _SignUpPageState createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+  SingingCharacter? _character = SingingCharacter.pria;
   @override
   Widget build(BuildContext context) {
     final authController = Get.find<AuthController>();
+    print(_character!.index.toString());
     return Scaffold(
       body: ListView(
         children: [
@@ -35,8 +44,7 @@ class SignUpPage extends StatelessWidget {
                           ),
                         ),
                         contentPadding: EdgeInsets.fromLTRB(30, 16, 0, 16),
-                        hintStyle: new TextStyle(color: Colors.grey[800]),
-                        hintText: "Name"),
+                        hintText: "Username"),
                   ),
                 ),
                 Padding(
@@ -51,7 +59,6 @@ class SignUpPage extends StatelessWidget {
                           ),
                         ),
                         contentPadding: EdgeInsets.fromLTRB(30, 16, 0, 16),
-                        hintStyle: new TextStyle(color: Colors.grey[800]),
                         hintText: "Email"),
                     keyboardType: TextInputType.emailAddress,
                   ),
@@ -68,30 +75,38 @@ class SignUpPage extends StatelessWidget {
                           ),
                         ),
                         contentPadding: EdgeInsets.fromLTRB(30, 16, 0, 16),
-                        hintStyle: new TextStyle(color: Colors.grey[800]),
-                        hintText: "Fullname"),
+                        hintText: "Nama lengkap"),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 23),
-                  child: TextField(
-                    controller: authController.sex,
-                    obscureText: true,
-                    style: TextStyle(color: Color(0xFF43A8FC)),
-                    decoration: new InputDecoration(
-                        border: new OutlineInputBorder(
-                          borderRadius: const BorderRadius.all(
-                            const Radius.circular(32),
-                          ),
-                        ),
-                        contentPadding: EdgeInsets.fromLTRB(30, 16, 0, 16),
-                        hintStyle: new TextStyle(),
-                        hintText: "Sex"),
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  child: Row(
+                    children: [
+                      Radio<SingingCharacter>(
+                          value: SingingCharacter.pria,
+                          groupValue: _character,
+                          onChanged: (SingingCharacter? value) {
+                            setState(() {
+                              _character = value;
+                            });
+                          }),
+                      Text('Pria'),
+                      Radio<SingingCharacter>(
+                          value: SingingCharacter.wanita,
+                          groupValue: _character,
+                          onChanged: (SingingCharacter? value) {
+                            setState(() {
+                              _character = value;
+                            });
+                          }),
+                      Text('Wanita'),
+                    ],
                   ),
                 ),
                 TextField(
+                  minLines: 1,
+                  maxLines: 3,
                   controller: authController.address,
-                  obscureText: true,
                   style: TextStyle(color: Color(0xFF43A8FC)),
                   decoration: new InputDecoration(
                       border: new OutlineInputBorder(
@@ -100,8 +115,7 @@ class SignUpPage extends StatelessWidget {
                         ),
                       ),
                       contentPadding: EdgeInsets.fromLTRB(30, 16, 0, 16),
-                      hintStyle: new TextStyle(),
-                      hintText: "Address"),
+                      hintText: "Alamat"),
                 ),
                 SizedBox(height: 24),
                 TextField(
@@ -115,7 +129,6 @@ class SignUpPage extends StatelessWidget {
                         ),
                       ),
                       contentPadding: EdgeInsets.fromLTRB(30, 16, 0, 16),
-                      hintStyle: new TextStyle(),
                       hintText: "Password"),
                 ),
                 SizedBox(height: 40),
@@ -129,14 +142,13 @@ class SignUpPage extends StatelessWidget {
                             if (authController.username.text != '' &&
                                 authController.fullname.text != '' &&
                                 authController.email.text != '' &&
-                                authController.sex.text != '' &&
                                 authController.address.text != '' &&
                                 authController.password.text != '') {
                               authController.signUp(
                                   authController.username.text,
                                   authController.fullname.text,
                                   authController.email.text,
-                                  authController.sex.text,
+                                  _character?.index == 0 ? 'pria' : 'wanita',
                                   authController.address.text,
                                   authController.password.text);
                             }

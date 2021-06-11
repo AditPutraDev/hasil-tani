@@ -5,7 +5,7 @@ class Loading {
     return Center(
       child: CircularProgressIndicator(
         valueColor: AlwaysStoppedAnimation<Color>(
-          color ?? Colors.blue,
+          color ?? greenColor,
         ),
       ),
     );
@@ -14,7 +14,7 @@ class Loading {
   static Widget threeBounce = SizedBox(
     height: 48,
     child: SpinKitThreeBounce(
-      color: Color(0xFF43A8FC),
+      color: greenColor,
       size: 14,
     ),
   );

@@ -6,97 +6,72 @@ class DictionaryPage extends StatelessWidget {
     final DictionaryController dictioncaryController =
         Get.find<DictionaryController>();
     return Scaffold(
-      body: Obx(() => Column(
-            children: [
-              Container(
-                child: TextField(
-                  decoration: InputDecoration(hintText: 'Search'),
-                  controller: dictioncaryController.search,
-                  onChanged: (text) {
-                    dictioncaryController
-                        .onSearch(dictioncaryController.search.text);
-                  },
-                ),
+      appBar: AppBar(
+        title: Row(
+          children: [
+            Flexible(
+              child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      offset: Offset(0, 3),
-                      blurRadius: 6,
-                      color: Colors.grey.shade200,
-                    )
-                  ],
+                  color: whiteColor,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  child: TextField(
+                    readOnly: true,
+                    decoration: InputDecoration(
+                        border: InputBorder.none, hintText: 'Search'),
+                    onTap: () => Get.to(() => SearchPage()),
+                  ),
                 ),
               ),
-              Expanded(
-                child: ListView(
-                  children: [
-                    Container(
-                      child: (dictioncaryController.searchList.length == 0 &&
-                              dictioncaryController.search.text.isEmpty)
-                          ? Column(
+            ),
+            IconButton(
+                onPressed: () => Get.to(() => SearchPage()),
+                icon: Icon(Icons.search_rounded)),
+          ],
+        ),
+      ),
+      body: Obx(
+        () => ListView(
+          children: [
+            Container(
+              padding: EdgeInsets.only(bottom: 90),
+              child: (dictioncaryController.dictionaryList.length != 0)
+                  ? Column(
+                      children: [
+                        ...dictioncaryController.dictionaryList.map((item) {
+                          return GestureDetector(
+                            onTap: () => Get.to(() => DetailPage(
+                                DetailInfoType.dictionary,
+                                dictionary: item)),
+                            child: Column(
                               children: [
-                                ...dictioncaryController.dictionaryList
-                                    .map((item) {
-                                  return GestureDetector(
-                                    onTap: () => Get.to(() => DetailPage(
-                                        DetailInfoType.dictionary,
-                                        dictionary: item)),
-                                    child: Column(
-                                      children: [
-                                        SizedBox(height: 40),
-                                        Text(item.istilah ?? '-',
-                                            style: blackBoldStyle),
-                                        SizedBox(height: 40),
-                                        Text(item.detail ?? '-'),
-                                        SizedBox(height: 40),
-                                        Text(item.type ?? '-'),
-                                      ],
-                                    ),
-                                  );
-                                })
+                                SizedBox(height: 40),
+                                Text('${item.istilah}', style: blackBoldStyle),
+                                SizedBox(height: 40),
+                                Text('${item.detail}'),
+                                SizedBox(height: 40),
+                                Text('${item.type}'),
                               ],
-                            )
-                          : (dictioncaryController.searchList.length != 0)
-                              ? Column(
-                                  children: [
-                                    ...dictioncaryController.searchList
-                                        .map((item) {
-                                      return GestureDetector(
-                                        onTap: () => Get.to(() => DetailPage(
-                                            DetailInfoType.dictionary,
-                                            dictionary: item)),
-                                        child: Column(
-                                          children: [
-                                            SizedBox(height: 40),
-                                            Text(item.istilah ?? '-',
-                                                style: blackBoldStyle),
-                                            SizedBox(height: 40),
-                                            Text(item.detail ?? '-'),
-                                            SizedBox(height: 40),
-                                            Text(item.type ?? '-'),
-                                          ],
-                                        ),
-                                      );
-                                    })
-                                  ],
-                                )
-                              : Padding(
-                                  padding: EdgeInsets.only(top: height / 4),
-                                  child: Column(
-                                    children: [
-                                      Icon(Icons.no_accounts_rounded,
-                                          size: 150),
-                                      Text('data kosong'),
-                                    ],
-                                  ),
-                                ),
+                            ),
+                          );
+                        })
+                      ],
+                    )
+                  : Padding(
+                      padding: EdgeInsets.only(top: height / 4),
+                      child: Column(
+                        children: [
+                          Icon(Icons.no_accounts_rounded, size: 150),
+                          Text('data kosong'),
+                        ],
+                      ),
                     ),
-                  ],
-                ),
-              ),
-            ],
-          )),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

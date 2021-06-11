@@ -5,6 +5,7 @@ class DictionaryController extends GetxController {
   final RxList<Dictionary> searchList = <Dictionary>[].obs;
 
   RxBool isLoading = true.obs;
+  var isTyping = false.obs;
   var search = TextEditingController();
   var searchText = "".obs;
   @override
@@ -12,6 +13,7 @@ class DictionaryController extends GetxController {
     fetchDictionary();
     search.addListener(() {
       searchText = search.text.obs;
+      search.text.length != 0 ? isTyping(true) : isTyping(false);
     });
     super.onInit();
   }
@@ -27,6 +29,11 @@ class DictionaryController extends GetxController {
         searchList.add(element);
       }
     });
+  }
+
+  void onTyping() {
+    isTyping(false);
+    search.clear();
   }
 
   void fetchDictionary() async {

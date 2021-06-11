@@ -21,16 +21,25 @@ class DetailPage extends StatelessWidget {
       body: ListView(
         children: [
           (type == DetailInfoType.galery)
-              ? Card(
-                  child: Column(
-                    children: [
-                      Container(
-                        width: double.infinity,
-                        height: 100,
-                        child: Image.network(galery?.foto ?? '-'),
+              ? Container(
+                  height: height,
+                  child: Hero(
+                    tag: '${galery?.idGalery}',
+                    child: Material(
+                      child: InkWell(
+                        child: Column(
+                          children: [
+                            Container(
+                              width: double.infinity,
+                              height: 240,
+                              child: Image.network('${galery?.foto}',
+                                  fit: BoxFit.cover),
+                            ),
+                            Text(galery?.description ?? '-')
+                          ],
+                        ),
                       ),
-                      Text(galery?.description ?? '-')
-                    ],
+                    ),
                   ),
                 )
               : (type == DetailInfoType.news)

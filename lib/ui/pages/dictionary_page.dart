@@ -13,10 +13,10 @@ class DictionaryPage extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   color: whiteColor,
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(25),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  padding: EdgeInsets.symmetric(horizontal: 34),
                   child: TextField(
                     readOnly: true,
                     decoration: InputDecoration(
@@ -41,21 +41,8 @@ class DictionaryPage extends StatelessWidget {
                   ? Column(
                       children: [
                         ...dictioncaryController.dictionaryList.map((item) {
-                          return GestureDetector(
-                            onTap: () => Get.to(() => DetailPage(
-                                DetailInfoType.dictionary,
-                                dictionary: item)),
-                            child: Column(
-                              children: [
-                                SizedBox(height: 40),
-                                Text('${item.istilah}', style: blackBoldStyle),
-                                SizedBox(height: 40),
-                                Text('${item.detail}'),
-                                SizedBox(height: 40),
-                                Text('${item.type}'),
-                              ],
-                            ),
-                          );
+                          return CustomListCard.dictionaryList(
+                              '${item.istilah}', '${item.detail}', context);
                         })
                       ],
                     )
@@ -63,7 +50,7 @@ class DictionaryPage extends StatelessWidget {
                       padding: EdgeInsets.only(top: height / 4),
                       child: Column(
                         children: [
-                          Icon(Icons.no_accounts_rounded, size: 150),
+                          Icon(Icons.inventory_rounded, size: 150),
                           Text('data kosong'),
                         ],
                       ),

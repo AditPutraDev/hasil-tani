@@ -8,6 +8,7 @@ class DictionaryController extends GetxController {
   var isTyping = false.obs;
   var search = TextEditingController();
   var searchText = "".obs;
+
   @override
   void onInit() {
     fetchDictionary();
@@ -34,6 +35,7 @@ class DictionaryController extends GetxController {
   void onTyping() {
     isTyping(false);
     search.clear();
+    searchList.clear();
   }
 
   void fetchDictionary() async {

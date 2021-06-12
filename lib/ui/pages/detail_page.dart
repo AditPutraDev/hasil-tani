@@ -1,22 +1,19 @@
 part of 'pages.dart';
 
-enum DetailInfoType { news, galery, dictionary }
+enum DetailInfoType { news, galery }
 
 class DetailPage extends StatelessWidget {
   final DetailInfoType type;
   final Galery? galery;
   final News? news;
-  final Dictionary? dictionary;
-  DetailPage(this.type, {this.galery, this.news, this.dictionary});
+  DetailPage(this.type, {this.galery, this.news});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text((type == DetailInfoType.galery)
-            ? galery?.name ?? '-'
-            : (type == DetailInfoType.news)
-                ? news?.title ?? '-'
-                : dictionary?.istilah ?? '-'),
+            ? '${galery?.name}'
+            : '${news?.title}'),
       ),
       body: ListView(
         children: [
@@ -34,31 +31,22 @@ class DetailPage extends StatelessWidget {
                               fit: BoxFit.cover),
                         ),
                       ),
-                      Text(galery?.description ?? '-')
+                      Text('${galery?.description}'),
                     ],
                   ),
                 )
-              : (type == DetailInfoType.news)
-                  ? Card(
-                      child: Column(
-                        children: [
-                          Container(
-                            width: double.infinity,
-                            height: 100,
-                            child: Image.network(news?.image ?? '-'),
-                          ),
-                          Text(news?.description ?? '-')
-                        ],
+              : Card(
+                  child: Column(
+                    children: [
+                      Container(
+                        width: double.infinity,
+                        height: 100,
+                        child: Image.network('${news?.image}'),
                       ),
-                    )
-                  : Card(
-                      child: Column(
-                        children: [
-                          Text(dictionary?.istilah ?? '-'),
-                          Text(dictionary?.detail ?? '-'),
-                        ],
-                      ),
-                    ),
+                      Text('${news?.description}'),
+                    ],
+                  ),
+                ),
         ],
       ),
     );

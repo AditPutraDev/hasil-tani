@@ -32,7 +32,7 @@ class SearchPage extends StatelessWidget {
                   (dictioncaryController.isTyping.value)
                       ? IconButton(
                           onPressed: () => dictioncaryController.onTyping(),
-                          icon: Icon(Icons.close, color: Colors.black),
+                          icon: Icon(Icons.close_rounded, color: Colors.black),
                         )
                       : SizedBox(),
                 ],
@@ -52,22 +52,10 @@ class SearchPage extends StatelessWidget {
                             children: [
                               ...dictioncaryController.dictionaryList
                                   .map((item) {
-                                return GestureDetector(
-                                  onTap: () => Get.to(() => DetailPage(
-                                      DetailInfoType.dictionary,
-                                      dictionary: item)),
-                                  child: Column(
-                                    children: [
-                                      SizedBox(height: 40),
-                                      Text('${item.istilah}',
-                                          style: blackBoldStyle),
-                                      SizedBox(height: 40),
-                                      Text('${item.detail}'),
-                                      SizedBox(height: 40),
-                                      Text('${item.type}'),
-                                    ],
-                                  ),
-                                );
+                                return CustomListCard.dictionaryList(
+                                    '${item.istilah}',
+                                    '${item.detail}',
+                                    context);
                               })
                             ],
                           )
@@ -76,22 +64,10 @@ class SearchPage extends StatelessWidget {
                                 children: [
                                   ...dictioncaryController.searchList
                                       .map((item) {
-                                    return GestureDetector(
-                                      onTap: () => Get.to(() => DetailPage(
-                                          DetailInfoType.dictionary,
-                                          dictionary: item)),
-                                      child: Column(
-                                        children: [
-                                          SizedBox(height: 40),
-                                          Text('${item.istilah}',
-                                              style: blackBoldStyle),
-                                          SizedBox(height: 40),
-                                          Text('${item.detail}'),
-                                          SizedBox(height: 40),
-                                          Text('${item.type}'),
-                                        ],
-                                      ),
-                                    );
+                                    return CustomListCard.dictionaryList(
+                                        '${item.istilah}',
+                                        '${item.detail}',
+                                        context);
                                   })
                                 ],
                               )
@@ -99,7 +75,7 @@ class SearchPage extends StatelessWidget {
                                 padding: EdgeInsets.only(top: height / 4),
                                 child: Column(
                                   children: [
-                                    Icon(Icons.no_accounts_rounded, size: 150),
+                                    Icon(Icons.inventory_rounded, size: 150),
                                     Text('data kosong'),
                                   ],
                                 ),

@@ -7,4 +7,4 @@ part 'galery_service.dart';
 part 'news_service.dart';
 part 'dictionary_service.dart';
 
-const API_URL = 'http://192.168.1.7/flutter-server';
+const API_URL = 'http://192.168.1.2/flutter-server';

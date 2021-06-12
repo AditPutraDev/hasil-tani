@@ -1,6 +1,6 @@
 part of 'pages.dart';
 
-class SearchPage extends StatelessWidget {
+class DictionarySearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final DictionaryController dictioncaryController =

@@ -21,13 +21,13 @@ class DictionaryPage extends StatelessWidget {
                     readOnly: true,
                     decoration: InputDecoration(
                         border: InputBorder.none, hintText: 'Search'),
-                    onTap: () => Get.to(() => SearchPage()),
+                    onTap: () => Get.to(() => DictionarySearchPage()),
                   ),
                 ),
               ),
             ),
             IconButton(
-                onPressed: () => Get.to(() => SearchPage()),
+                onPressed: () => Get.to(() => DictionarySearchPage()),
                 icon: Icon(Icons.search_rounded)),
           ],
         ),

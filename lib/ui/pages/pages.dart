@@ -14,4 +14,4 @@ part 'splash_page.dart';
 part 'sign_up_page.dart';
 part 'galery_page.dart';
 part 'galery_tab_page.dart';
-part 'search_page.dart';
+part 'dictionary_search_page.dart';

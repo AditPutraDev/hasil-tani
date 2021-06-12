@@ -1,22 +1,10 @@
 part of 'pages.dart';
 
-class SplashPage extends StatefulWidget {
-  @override
-  _SplashPageState createState() => _SplashPageState();
-}
-
-class _SplashPageState extends State<SplashPage> {
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(Duration(seconds: 3), () {
-      //checkLoginStatus();
-      Get.offAll(() => SignInPage());
-    });
-  }
-
+class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final authController = Get.put(AuthController());
+    authController.splash();
     return Scaffold(
       body: Center(
         child: Loading.threeBounce,

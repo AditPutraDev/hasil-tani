@@ -4,12 +4,17 @@ class NewsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final NewsController newsController = Get.put(NewsController());
+    final authController = Get.find<AuthController>();
     return Scaffold(
       backgroundColor: whiteColor,
       appBar: AppBar(
+        title: Text('News'),
+        centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () => Get.offAll(() => MainPage()),
+            onPressed: () {
+              authController.signOut();
+            },
             icon: Icon(Icons.exit_to_app_rounded),
           )
         ],

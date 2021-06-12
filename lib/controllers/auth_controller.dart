@@ -20,10 +20,10 @@ class AuthController extends GetxController {
       var data = json.decode(response.body);
 
       if (response.statusCode == 200 && data["value"] == 1) {
-        print(data);
-        Get.to(() => NewsPage());
+        Get.offAll(() => NewsPage());
         showBotToastText(data["message"]);
         isLoading(false);
+        saveLikeToken(data["password"]);
         return true;
       }
       showBotToastText(data["message"]);
@@ -49,9 +49,10 @@ class AuthController extends GetxController {
       var data = json.decode(response.body);
       if (response.statusCode == 200 && data["value"] == 1) {
         print(data);
-        Get.to(() => NewsPage());
+        Get.offAll(() => NewsPage());
         showBotToastText(data["message"]);
         isLoading(false);
+        saveLikeToken(data["value"].toString());
         return true;
       }
       showBotToastText(data["message"]);
@@ -59,6 +60,38 @@ class AuthController extends GetxController {
     } finally {
       isLoading(false);
     }
+  }
+
+  void signOut() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setString("like_token", "");
+    Get.offAll(() => MainPage());
+  }
+
+  void splash() {
+    Future.delayed(Duration(seconds: 3), () {
+      checkLoginStatus();
+    });
+  }
+
+  checkLoginStatus() async {
+    String? token = await readLikeToken();
+    if (token == '' || token == null) {
+      Get.offAll(() => SignInPage());
+    } else {
+      Get.offAll(() => NewsPage());
+    }
+  }
+
+  saveLikeToken(String likeToken) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setString("like_token", likeToken);
+  }
+
+  Future<String?> readLikeToken() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    String? token = preferences.getString("like_token");
+    return token;
   }
 
   void checkSignIn() {

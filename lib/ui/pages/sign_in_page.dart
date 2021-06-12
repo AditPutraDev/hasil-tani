@@ -1,7 +1,7 @@
 part of 'pages.dart';
 
 class SignInPage extends StatelessWidget {
-  final authController = Get.put(AuthController());
+  final authController = Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

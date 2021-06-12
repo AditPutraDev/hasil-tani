@@ -7,6 +7,7 @@ import 'package:hasil_tani/services/services.dart';
 import 'package:hasil_tani/ui/pages/pages.dart';
 import 'package:hasil_tani/ui/widgets/widgets.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'galery_controller.dart';
 part 'dictionary_controller.dart';

@@ -13,9 +13,14 @@ class GaleryController extends GetxController {
   void fetchGalery() async {
     try {
       isLoading(true);
-      await GaleryService.getGalery().then((value) {
-        if (value is List<Galery>) {
-          galeryList.addAll(value);
+      Request request = Request(url: 'get_galery.php');
+      await request.get().then((res) {
+        if (res.statusCode == 200) {
+          final data = jsonDecode(res.body);
+          final value = (data as List).map((e) => Galery.fromJson(e)).toList();
+          if (value is List<Galery>) {
+            galeryList.addAll(value);
+          }
         }
       });
     } finally {

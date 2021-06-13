@@ -12,21 +12,21 @@ class AuthController extends GetxController {
   Future<bool> signIn(String username, String password) async {
     try {
       isLoading(true);
-      var url = Uri.parse(API_URL + '/login.php');
-      final response = await http.post(url, body: {
+      Request request = Request(url: 'login.php', body: {
         'username': username,
         'password': password,
       });
-      var data = json.decode(response.body);
-
-      if (response.statusCode == 200 && data["value"] == 1) {
-        Get.offAll(() => NewsPage());
+      await request.post().then((res) {
+        final data = jsonDecode(res.body);
+        if (res.statusCode == 200 && data["value"] == 1) {
+          Get.offAll(() => NewsPage());
+          showBotToastText(data["message"]);
+          isLoading(false);
+          saveLikeToken(data["password"]);
+          return true;
+        }
         showBotToastText(data["message"]);
-        isLoading(false);
-        saveLikeToken(data["password"]);
-        return true;
-      }
-      showBotToastText(data["message"]);
+      });
       return false;
     } finally {
       isLoading(false);
@@ -37,8 +37,7 @@ class AuthController extends GetxController {
       String sex, String address, String password) async {
     try {
       isLoading(true);
-      var url = Uri.parse(API_URL + '/register.php');
-      final response = await http.post(url, body: {
+      Request request = Request(url: 'register.php', body: {
         'username': username,
         'full_name': fullname,
         'email': email,
@@ -46,16 +45,17 @@ class AuthController extends GetxController {
         'address': address,
         'password': password,
       });
-      var data = json.decode(response.body);
-      if (response.statusCode == 200 && data["value"] == 1) {
-        print(data);
-        Get.offAll(() => NewsPage());
+      await request.post().then((res) {
+        final data = jsonDecode(res.body);
+        if (res.statusCode == 200 && data["value"] == 1) {
+          Get.offAll(() => NewsPage());
+          showBotToastText(data["message"]);
+          isLoading(false);
+          saveLikeToken(data["value"].toString());
+          return true;
+        }
         showBotToastText(data["message"]);
-        isLoading(false);
-        saveLikeToken(data["value"].toString());
-        return true;
-      }
-      showBotToastText(data["message"]);
+      });
       return false;
     } finally {
       isLoading(false);

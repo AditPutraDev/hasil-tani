@@ -13,9 +13,14 @@ class NewsController extends GetxController {
   void fetchNews() async {
     try {
       isLoading(true);
-      await NewsService.getNews().then((value) {
-        if (value is List<News>) {
-          newsList.addAll(value);
+      Request request = Request(url: 'get_news.php');
+      await request.get().then((res) {
+        if (res.statusCode == 200) {
+          final data = jsonDecode(res.body);
+          final value = (data as List).map((e) => News.fromJson(e)).toList();
+          if (value is List<News>) {
+            newsList.addAll(value);
+          }
         }
       });
     } finally {

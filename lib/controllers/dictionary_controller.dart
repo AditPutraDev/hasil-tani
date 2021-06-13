@@ -40,15 +40,22 @@ class DictionaryController extends GetxController {
 
   void fetchDictionary() async {
     try {
-      await DictionaryService.getDictionary().then((value) {
-        if (value is List<Dictionary>) {
-          dictionaryList.addAll(value);
-        } else {
-          showBotToastText(value);
+      isLoading(true);
+      Request request = Request(url: 'get_dictionary.php');
+      await request.get().then((res) {
+        if (res.statusCode == 200) {
+          final data = jsonDecode(res.body);
+          final value =
+              (data as List).map((e) => Dictionary.fromJson(e)).toList();
+          if (value is List<Dictionary>) {
+            dictionaryList.addAll(value);
+          }
         }
       });
     } catch (e) {
       showBotToastText('Something wrong, $e');
+    } finally {
+      isLoading(false);
     }
   }
 }

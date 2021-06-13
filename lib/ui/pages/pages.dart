@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hasil_tani/controllers/controllers.dart';
 import 'package:hasil_tani/models/models.dart';
-import 'package:hasil_tani/themes/themes.dart';
+import 'package:hasil_tani/shared/themes.dart';
 import 'package:hasil_tani/ui/widgets/widgets.dart';
 
 part 'main_page.dart';

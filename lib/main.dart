@@ -1,7 +1,7 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hasil_tani/themes/themes.dart';
+import 'package:hasil_tani/shared/themes.dart';
 import 'package:hasil_tani/ui/pages/pages.dart';
 
 void main() {

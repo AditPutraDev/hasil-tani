@@ -14,39 +14,53 @@ class DetailPage extends StatelessWidget {
         title: Text((type == DetailInfoType.galery)
             ? '${galery?.name}'
             : '${news?.title}'),
+        centerTitle: true,
       ),
       body: ListView(
         children: [
           (type == DetailInfoType.galery)
-              ? Container(
-                  height: height,
-                  child: Column(
-                    children: [
-                      Container(
-                        width: double.infinity,
-                        height: 240,
-                        child: Hero(
-                          tag: '${galery?.idGalery}',
-                          child: Image.network('${galery?.foto}',
-                              fit: BoxFit.cover),
-                        ),
-                      ),
-                      Text('${galery?.description}'),
-                    ],
-                  ),
-                )
-              : Card(
-                  child: Column(
-                    children: [
-                      Container(
-                        width: double.infinity,
-                        height: 100,
-                        child: Image.network('${news?.image}'),
-                      ),
-                      Text('${news?.description}'),
-                    ],
-                  ),
-                ),
+              ? buildDetail(
+                  '${galery?.idGalery}',
+                  '${galery?.foto}',
+                  '${galery?.name}',
+                  '${galery?.description}',
+                  Icons.loyalty_rounded)
+              : buildDetail('${news?.idNews}', '${news?.image}',
+                  '${news?.title}', '${news?.description}', Icons.star)
+        ],
+      ),
+    );
+  }
+
+  Widget buildDetail(String id, String image, String title, String description,
+      IconData icon) {
+    return Container(
+      height: height,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: double.infinity,
+            height: 240,
+            child: Hero(
+              tag: id,
+              child: Image.network(image, fit: BoxFit.cover),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(12, 24, 0, 12),
+            child: Row(
+              children: [
+                Text(title, style: blackBoldStyle),
+                SizedBox(width: 12),
+                Icon(icon, color: greenColor),
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 12),
+            child: Text(description, textAlign: TextAlign.justify),
+          ),
         ],
       ),
     );

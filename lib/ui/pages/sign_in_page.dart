@@ -115,9 +115,8 @@ class SignInPage extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                        FocusScope.of(context).requestFocus(FocusNode());
-
                         Get.to(() => SignUpPage());
+                        FocusScope.of(context).requestFocus(FocusNode());
                       },
                     ),
                   ],

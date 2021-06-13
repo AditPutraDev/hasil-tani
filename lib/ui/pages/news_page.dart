@@ -10,6 +10,10 @@ class NewsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('News'),
         centerTitle: true,
+        leading: IconButton(
+          onPressed: () => Get.offAll(() => MainPage()),
+          icon: Icon(Icons.home_rounded),
+        ),
         actions: [
           IconButton(
             onPressed: () {
@@ -24,7 +28,7 @@ class NewsPage extends StatelessWidget {
           Obx(
             () {
               if (newsController.isLoading.value)
-                return Loading.threeBounce;
+                return Center(child: Loading.threeBounce);
               else
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,38 +38,40 @@ class NewsPage extends StatelessWidget {
                       child: Text('Slider News', style: blackBoldStyle),
                     ),
                     SingleChildScrollView(
-                        padding: EdgeInsets.only(bottom: 12),
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: [
-                            ...newsController.newsList.map((item) {
-                              return GestureDetector(
-                                onTap: () => Get.to(
-                                  () => DetailPage(DetailInfoType.news,
-                                      news: item),
-                                ),
-                                child: Container(
-                                  width: 200,
-                                  height: 210,
-                                  margin: EdgeInsets.fromLTRB(
-                                      item == newsController.newsList.first
-                                          ? 34
-                                          : 0,
-                                      24,
-                                      8,
-                                      8),
-                                  decoration: BoxDecoration(
-                                      color: whiteColor,
-                                      borderRadius: BorderRadius.circular(8),
-                                      boxShadow: [
-                                        BoxShadow(
-                                            spreadRadius: 3,
-                                            blurRadius: 15,
-                                            color: Colors.black26)
-                                      ]),
-                                  child: Column(
-                                    children: [
-                                      Container(
+                      padding: EdgeInsets.only(bottom: 12),
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          ...newsController.newsList.map((item) {
+                            return GestureDetector(
+                              onTap: () => Get.to(
+                                () =>
+                                    DetailPage(DetailInfoType.news, news: item),
+                              ),
+                              child: Container(
+                                width: 200,
+                                margin: EdgeInsets.fromLTRB(
+                                    item == newsController.newsList.first
+                                        ? 24
+                                        : 0,
+                                    24,
+                                    12,
+                                    6),
+                                decoration: BoxDecoration(
+                                    color: whiteColor,
+                                    borderRadius: BorderRadius.circular(8),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          spreadRadius: 2.5,
+                                          blurRadius: 3,
+                                          color: Colors.black26)
+                                    ]),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Hero(
+                                      tag: '${item.idNews}',
+                                      child: Container(
                                         height: 140,
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.only(
@@ -73,19 +79,24 @@ class NewsPage extends StatelessWidget {
                                             topRight: Radius.circular(8),
                                           ),
                                           image: DecorationImage(
-                                              image: NetworkImage(
-                                                  item.image ?? '-'),
+                                              image:
+                                                  NetworkImage('${item.image}'),
                                               fit: BoxFit.cover),
                                         ),
                                       ),
-                                      Text(item.title ?? '-'),
-                                    ],
-                                  ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.all(12),
+                                      child: Text('${item.title}'),
+                                    ),
+                                  ],
                                 ),
-                              );
-                            }),
-                          ],
-                        )),
+                              ),
+                            );
+                          }),
+                        ],
+                      ),
+                    ),
                     Padding(
                       padding: const EdgeInsets.all(24),
                       child: Text('List News', style: blackBoldStyle),
@@ -98,8 +109,8 @@ class NewsPage extends StatelessWidget {
                         child: Card(
                           child: Column(
                             children: [
-                              Image.network(item.image ?? '-'),
-                              Text(item.title ?? '-'),
+                              Image.network('${item.image}'),
+                              Text('${item.title}'),
                             ],
                           ),
                         ),

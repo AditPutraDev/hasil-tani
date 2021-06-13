@@ -44,20 +44,14 @@ class _MainPageState extends State<MainPage> {
           ),
         ],
       ),
-      floatingActionButton: Align(
-        alignment: Alignment.bottomCenter,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 34),
-          child: CustomBottonNavbar(
-            selectedIndex: selectedPage,
-            onTap: (index) {
-              setState(() {
-                selectedPage = index;
-              });
-              pageController.jumpToPage(selectedPage);
-            },
-          ),
-        ),
+      bottomNavigationBar: CustomBottonNavbar(
+        selectedIndex: selectedPage,
+        onTap: (index) {
+          setState(() {
+            selectedPage = index;
+          });
+          pageController.jumpToPage(selectedPage);
+        },
       ),
     );
   }

@@ -1,18 +1,15 @@
 part of 'pages.dart';
 
-enum SingingCharacter { pria, wanita }
-
 class SignUpPage extends StatefulWidget {
   @override
   _SignUpPageState createState() => _SignUpPageState();
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  SingingCharacter? _character = SingingCharacter.pria;
+  bool groupValue = true;
   @override
   Widget build(BuildContext context) {
     final authController = Get.find<AuthController>();
-    print(_character!.index.toString());
     return Scaffold(
       body: ListView(
         children: [
@@ -82,21 +79,21 @@ class _SignUpPageState extends State<SignUpPage> {
                   padding: const EdgeInsets.symmetric(vertical: 12),
                   child: Row(
                     children: [
-                      Radio<SingingCharacter>(
-                          value: SingingCharacter.pria,
-                          groupValue: _character,
-                          onChanged: (SingingCharacter? value) {
+                      Radio<bool>(
+                          value: true,
+                          groupValue: groupValue,
+                          onChanged: (value) {
                             setState(() {
-                              _character = value;
+                              groupValue = value!;
                             });
                           }),
                       Text('Pria'),
-                      Radio<SingingCharacter>(
-                          value: SingingCharacter.wanita,
-                          groupValue: _character,
-                          onChanged: (SingingCharacter? value) {
+                      Radio<bool>(
+                          value: false,
+                          groupValue: groupValue,
+                          onChanged: (value) {
                             setState(() {
-                              _character = value;
+                              groupValue = value!;
                             });
                           }),
                       Text('Wanita'),
@@ -148,7 +145,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   authController.username.text,
                                   authController.fullname.text,
                                   authController.email.text,
-                                  _character?.index == 0 ? 'pria' : 'wanita',
+                                  (groupValue == true) ? 'pria' : 'wanita',
                                   authController.address.text,
                                   authController.password.text);
                             }

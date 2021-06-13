@@ -20,7 +20,8 @@ class GaleryPage extends StatelessWidget {
                       backgroundColor: whiteColor,
                       brightness: Brightness.light,
                       expandedHeight: 100,
-                      leading: Icon(Icons.list, color: Colors.black),
+                      leading: Icon(Icons.stacked_line_chart_rounded,
+                          color: Colors.black),
                       title: Text('Hasil Tani', style: blackBoldStyle),
                       actions: [
                         Padding(

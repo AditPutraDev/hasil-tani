@@ -42,4 +42,20 @@ class CustomListCard {
       ),
     );
   }
+
+  static imageItem(String imageUrl) {
+    return CachedNetworkImage(
+      height: 120,
+      width: 100,
+      imageUrl: imageUrl,
+      fit: BoxFit.cover,
+      placeholder: (context, url) => Loading.shimmer,
+      errorWidget: (context, url, error) => Container(
+        height: 120,
+        width: 100,
+        color: Colors.grey.shade200,
+        child: Icon(Icons.broken_image_rounded, color: Colors.grey),
+      ),
+    );
+  }
 }

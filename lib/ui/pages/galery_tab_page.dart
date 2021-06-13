@@ -40,10 +40,8 @@ class TabGalery extends StatelessWidget {
                                       tag: '${item.idGalery}',
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(15),
-                                        child: Image.network('${item.foto}',
-                                            height: 120,
-                                            width: 100,
-                                            fit: BoxFit.cover),
+                                        child: CustomListCard.imageItem(
+                                            '${item.foto}'),
                                       ),
                                     ),
                                   ),

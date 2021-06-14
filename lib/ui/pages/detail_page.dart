@@ -10,26 +10,27 @@ class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text((type == DetailInfoType.galery)
-            ? '${galery?.name}'
-            : '${news?.title}'),
-        centerTitle: true,
-      ),
-      body: ListView(
-        children: [
-          (type == DetailInfoType.galery)
-              ? buildDetail(
-                  '${galery?.idGalery}',
-                  '${galery?.foto}',
-                  '${galery?.name}',
-                  '${galery?.description}',
-                  Icons.loyalty_rounded)
-              : buildDetail('${news?.idNews}', '${news?.image}',
-                  '${news?.title}', '${news?.description}', Icons.star)
-        ],
-      ),
-    );
+        body: Stack(
+      children: [
+        Container(color: greenColor),
+        SafeArea(
+          child: Container(color: Colors.white),
+        ),
+        ListView(
+          children: [
+            (type == DetailInfoType.galery)
+                ? buildDetail(
+                    '${galery?.idGalery}',
+                    '${galery?.foto}',
+                    '${galery?.name}',
+                    '${galery?.description}',
+                    Icons.loyalty_rounded)
+                : buildDetail('${news?.idNews}', '${news?.image}',
+                    '${news?.title}', '${news?.description}', Icons.star)
+          ],
+        )
+      ],
+    ));
   }
 
   Widget buildDetail(String id, String image, String title, String description,
@@ -39,17 +40,52 @@ class DetailPage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: double.infinity,
-            height: 240,
-            child: Hero(
-              tag: id,
-              child: Image.network(image, fit: BoxFit.cover),
-            ),
+          Stack(
+            children: [
+              Stack(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    height: 240,
+                    child: Hero(
+                      tag: id,
+                      child: Image.network(image, fit: BoxFit.cover),
+                    ),
+                  ),
+                  Container(
+                    height: 241,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            begin: Alignment(0, 1),
+                            end: Alignment(0, 0.06),
+                            colors: [
+                          Colors.white,
+                          Colors.white.withOpacity(0)
+                        ])),
+                  )
+                ],
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 20, left: 24),
+                padding: EdgeInsets.all(1),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: Colors.black.withOpacity(0.04)),
+                child: GestureDetector(
+                  onTap: () => Get.back(),
+                  child: Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                  ),
+                ),
+              )
+            ],
           ),
           Padding(
             padding: EdgeInsets.fromLTRB(12, 24, 0, 12),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(title, style: blackBoldStyle),
                 SizedBox(width: 12),

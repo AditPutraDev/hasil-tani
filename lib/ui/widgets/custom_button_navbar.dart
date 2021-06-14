@@ -28,13 +28,13 @@ class CustomBottonNavbar extends StatelessWidget {
               color: Colors.white,
               child: Column(
                 children: [
-                  Icon(Icons.developer_board_rounded,
-                      color: selectedIndex == 0 ? mainBlueColor : silverColor),
+                  Icon(Icons.home_rounded,
+                      color: selectedIndex == 0 ? greenColor : silverColor),
                   SizedBox(height: 3),
                   CircleAvatar(
                       radius: 2,
                       backgroundColor:
-                          selectedIndex == 0 ? mainBlueColor : Colors.white)
+                          selectedIndex == 0 ? greenColor : Colors.white)
                 ],
               ),
             ),
@@ -49,12 +49,12 @@ class CustomBottonNavbar extends StatelessWidget {
               child: Column(
                 children: [
                   Icon(Icons.class__rounded,
-                      color: selectedIndex == 1 ? mainBlueColor : silverColor),
+                      color: selectedIndex == 1 ? greenColor : silverColor),
                   SizedBox(height: 3),
                   CircleAvatar(
                       radius: 2,
                       backgroundColor:
-                          selectedIndex == 1 ? mainBlueColor : Colors.white)
+                          selectedIndex == 1 ? greenColor : Colors.white)
                 ],
               ),
             ),
@@ -68,12 +68,12 @@ class CustomBottonNavbar extends StatelessWidget {
               child: Column(
                 children: [
                   Icon(Icons.person_rounded,
-                      color: selectedIndex == 2 ? mainBlueColor : silverColor),
+                      color: selectedIndex == 2 ? greenColor : silverColor),
                   SizedBox(height: 3),
                   CircleAvatar(
                       radius: 2,
                       backgroundColor:
-                          selectedIndex == 2 ? mainBlueColor : Colors.white)
+                          selectedIndex == 2 ? greenColor : Colors.white)
                 ],
               ),
             ),

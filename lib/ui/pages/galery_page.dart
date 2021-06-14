@@ -3,7 +3,7 @@ part of 'pages.dart';
 class GaleryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final GaleryController galeryController = Get.find<GaleryController>();
+    final galeryController = Get.find<GaleryController>();
     return Scaffold(
       body: Obx(
         () {
@@ -20,9 +20,10 @@ class GaleryPage extends StatelessWidget {
                       backgroundColor: whiteColor,
                       brightness: Brightness.light,
                       expandedHeight: 100,
-                      leading: Icon(Icons.stacked_line_chart_rounded,
-                          color: Colors.black),
-                      title: Text('Hasil Tani', style: blackBoldStyle),
+                      title: Text(
+                        'Hasil Tani',
+                        style: mainStyle.copyWith(fontWeight: FontWeight.bold),
+                      ),
                       actions: [
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -46,8 +47,20 @@ class GaleryPage extends StatelessWidget {
                         indicatorColor: Colors.green,
                         labelStyle: blackBoldStyle,
                         tabs: [
-                          Tab(text: 'Perkebunan'),
-                          Tab(text: 'Perikanan'),
+                          Tab(
+                            child: CustomListCard.imageItem(
+                              galeryController.garden,
+                              iHeight: 45,
+                              iWidth: 44,
+                            ),
+                          ),
+                          Tab(
+                            child: CustomListCard.imageItem(
+                              galeryController.fish,
+                              iHeight: 45,
+                              iWidth: 44,
+                            ),
+                          ),
                           Tab(text: 'Pertanian'),
                           Tab(text: 'Peternakan'),
                           Tab(text: 'Perhutanan'),
@@ -60,9 +73,9 @@ class GaleryPage extends StatelessWidget {
                   children: [
                     TabGalery('perkebunan'),
                     TabGalery('perikanan'),
-                    titleComingSoon(),
-                    titleComingSoon(),
-                    titleComingSoon(),
+                    titleComingSoon(galeryController.soon),
+                    titleComingSoon(galeryController.soon),
+                    titleComingSoon(galeryController.soon),
                   ],
                 ),
               ),
@@ -72,9 +85,9 @@ class GaleryPage extends StatelessWidget {
     );
   }
 
-  Widget titleComingSoon() {
+  Widget titleComingSoon(String image) {
     return Center(
-      child: Text('Coming soon'),
+      child: CustomListCard.imageItem(image, fit: BoxFit.contain),
     );
   }
 }

@@ -41,7 +41,7 @@ class MyRaisedButton extends StatelessWidget {
                 style: TextButton.styleFrom(
                   padding:
                       EdgeInsets.fromLTRB(30, 15, icon != null ? 15 : 30, 15),
-                  backgroundColor: color ?? Color(0xFF43A8FC),
+                  backgroundColor: color ?? greenColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(100),
                   ),

@@ -26,7 +26,10 @@ class Loading {
         stops: [0.25, 0.5, 0.35],
         colors: [Colors.grey.shade200, Colors.white, Colors.grey.shade200]),
     child: Container(
-      color: whiteColor,
+      decoration: BoxDecoration(
+        color: whiteColor,
+        borderRadius: BorderRadius.circular(8),
+      ),
     ),
   );
 }

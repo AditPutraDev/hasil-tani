@@ -50,7 +50,10 @@ class DictionaryPage extends StatelessWidget {
                       padding: EdgeInsets.only(top: height / 4),
                       child: Column(
                         children: [
-                          Icon(Icons.inventory_rounded, size: 150),
+                          CustomListCard.imageItem(
+                            dictioncaryController.empty,
+                            fit: BoxFit.contain,
+                          ),
                           Text('data kosong'),
                         ],
                       ),

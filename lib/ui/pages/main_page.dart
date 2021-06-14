@@ -17,7 +17,7 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       body: Stack(
         children: [
-          Container(color: mainBlueColor),
+          Container(color: greenColor),
           SafeArea(
             child: Container(color: greyPage),
           ),

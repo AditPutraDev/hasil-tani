@@ -11,14 +11,11 @@ class NewsPage extends StatelessWidget {
         title: Text('News'),
         centerTitle: true,
         leading: IconButton(
-          onPressed: () => Get.offAll(() => MainPage()),
-          icon: Icon(Icons.home_rounded),
-        ),
+            onPressed: () => Get.offAll(() => MainPage()),
+            icon: Icon(Icons.home_rounded)),
         actions: [
           IconButton(
-            onPressed: () {
-              authController.signOut();
-            },
+            onPressed: () => authController.signOut(),
             icon: Icon(Icons.exit_to_app_rounded),
           )
         ],
@@ -107,10 +104,25 @@ class NewsPage extends StatelessWidget {
                           () => DetailPage(DetailInfoType.news, news: item),
                         ),
                         child: Card(
+                          margin: EdgeInsets.all(8),
                           child: Column(
                             children: [
-                              Image.network('${item.image}'),
-                              Text('${item.title}'),
+                              Container(
+                                width: double.infinity,
+                                height: 240,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(4),
+                                    topRight: Radius.circular(4),
+                                  ),
+                                  child:
+                                      CustomListCard.imageItem('${item.image}'),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text('${item.title}'),
+                              ),
                             ],
                           ),
                         ),

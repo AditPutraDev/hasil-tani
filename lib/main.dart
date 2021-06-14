@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Hasil Tani',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primaryColor: mainBlueColor),
+      theme: ThemeData(primarySwatch: Colors.green, primaryColor: greenColor),
       home: MainPage(),
       builder: BotToastInit(),
     );

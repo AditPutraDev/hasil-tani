@@ -1,6 +1,6 @@
 import 'package:http/http.dart' as http;
 
-const baseUrl = 'http://192.168.1.5/flutter-server/';
+const baseUrl = 'http://192.168.1.3/flutter-server/';
 
 class Request {
   String url;

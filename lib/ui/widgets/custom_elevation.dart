@@ -15,7 +15,7 @@ class CustomElevation extends StatelessWidget {
         borderRadius: BorderRadius.circular(borderRadius ?? 0),
         boxShadow: <BoxShadow>[
           BoxShadow(
-            color: Color(0xFF43A8FC).withAlpha(100),
+            color: greenColor.withAlpha(100),
             blurRadius: elevation ?? 20,
             offset: Offset(0, elevation == 0 ? 0 : 6),
           ),

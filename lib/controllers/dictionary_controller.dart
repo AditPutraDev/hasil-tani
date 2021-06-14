@@ -8,6 +8,7 @@ class DictionaryController extends GetxController {
   var isTyping = false.obs;
   var search = TextEditingController();
   var searchText = "".obs;
+  String empty = 'https://image.flaticon.com/icons/png/512/1437/1437185.png';
 
   @override
   void onInit() {

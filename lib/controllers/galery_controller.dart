@@ -3,6 +3,9 @@ part of 'controllers.dart';
 class GaleryController extends GetxController {
   final RxList<Galery> galeryList = <Galery>[].obs;
   var isLoading = true.obs;
+  String soon = 'https://image.flaticon.com/icons/png/512/4771/4771343.png';
+  String garden = 'https://image.flaticon.com/icons/png/512/2917/2917733.png';
+  String fish = 'https://image.flaticon.com/icons/png/512/4039/4039770.png';
 
   @override
   void onInit() {

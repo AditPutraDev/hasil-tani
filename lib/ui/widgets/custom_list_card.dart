@@ -43,16 +43,17 @@ class CustomListCard {
     );
   }
 
-  static imageItem(String imageUrl) {
+  static imageItem(String imageUrl,
+      {double? iWidth, double? iHeight, BoxFit? fit}) {
     return CachedNetworkImage(
-      height: 120,
-      width: 100,
+      height: iHeight != null ? iHeight : 120,
+      width: iWidth != null ? iWidth : 100,
       imageUrl: imageUrl,
-      fit: BoxFit.cover,
+      fit: fit != null ? fit : BoxFit.cover,
       placeholder: (context, url) => Loading.shimmer,
       errorWidget: (context, url, error) => Container(
-        height: 120,
-        width: 100,
+        height: iHeight != null ? 120 : iHeight,
+        width: iWidth != null ? 100 : iWidth,
         color: Colors.grey.shade200,
         child: Icon(Icons.broken_image_rounded, color: Colors.grey),
       ),

@@ -21,11 +21,10 @@ class _SignUpPageState extends State<SignUpPage> {
                   padding: const EdgeInsets.only(top: 93),
                   child: Text(
                     "Sign Up",
-                    style: TextStyle(
-                      color: Color(0xFF43A8FC),
-                      letterSpacing: 3,
+                    style: mainStyle.copyWith(
                       fontSize: 30,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 3,
                     ),
                   ),
                 ),
@@ -33,7 +32,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   padding: const EdgeInsets.only(top: 67),
                   child: TextField(
                     controller: authController.username,
-                    style: TextStyle(color: Color(0xFF43A8FC)),
+                    style: mainStyle,
                     decoration: new InputDecoration(
                         border: new OutlineInputBorder(
                           borderRadius: const BorderRadius.all(
@@ -48,7 +47,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   padding: const EdgeInsets.only(top: 23),
                   child: TextField(
                     controller: authController.email,
-                    style: TextStyle(color: Color(0xFF43A8FC)),
+                    style: mainStyle,
                     decoration: new InputDecoration(
                         border: new OutlineInputBorder(
                           borderRadius: const BorderRadius.all(
@@ -64,7 +63,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   padding: const EdgeInsets.only(top: 23),
                   child: TextField(
                     controller: authController.fullname,
-                    style: TextStyle(color: Color(0xFF43A8FC)),
+                    style: mainStyle,
                     decoration: new InputDecoration(
                         border: new OutlineInputBorder(
                           borderRadius: const BorderRadius.all(
@@ -104,7 +103,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   minLines: 1,
                   maxLines: 3,
                   controller: authController.address,
-                  style: TextStyle(color: Color(0xFF43A8FC)),
+                  style: mainStyle,
                   decoration: new InputDecoration(
                       border: new OutlineInputBorder(
                         borderRadius: const BorderRadius.all(
@@ -118,7 +117,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 TextField(
                   controller: authController.password,
                   obscureText: true,
-                  style: TextStyle(color: Color(0xFF43A8FC)),
+                  style: mainStyle,
                   decoration: new InputDecoration(
                       border: new OutlineInputBorder(
                         borderRadius: const BorderRadius.all(

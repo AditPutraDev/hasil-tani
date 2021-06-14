@@ -20,3 +20,7 @@ TextStyle blackBoldStyle = GoogleFonts.poppins().copyWith(
     fontWeight: FontWeight.bold,
     letterSpacing: 1.0);
 TextStyle titleToastStyle = GoogleFonts.poppins().copyWith(fontSize: 14);
+TextStyle mainStyle = GoogleFonts.poppins().copyWith(
+  color: greenColor,
+  fontWeight: FontWeight.w500,
+);

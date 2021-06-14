@@ -15,11 +15,10 @@ class SignInPage extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 93),
                   child: Text(
                     "Sign In",
-                    style: TextStyle(
-                      color: Color(0xFF43A8FC),
-                      letterSpacing: 3,
+                    style: mainStyle.copyWith(
                       fontSize: 30,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 3,
                     ),
                   ),
                 ),
@@ -27,7 +26,7 @@ class SignInPage extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 67),
                   child: TextField(
                     controller: authController.username,
-                    style: TextStyle(color: Color(0xFF43A8FC)),
+                    style: mainStyle,
                     decoration: new InputDecoration(
                       suffixIcon: Icon(Icons.person_outline),
                       border: new OutlineInputBorder(
@@ -47,7 +46,7 @@ class SignInPage extends StatelessWidget {
                   child: TextField(
                     controller: authController.password,
                     obscureText: true,
-                    style: TextStyle(color: Color(0xFF43A8FC)),
+                    style: mainStyle,
                     decoration: new InputDecoration(
                       suffixIcon: Icon(Icons.lock_outline),
                       border: new OutlineInputBorder(
@@ -109,7 +108,7 @@ class SignInPage extends StatelessWidget {
                       child: Text(
                         "SIGN UP",
                         style: TextStyle(
-                          color: Color(0xFF43A8FC),
+                          color: greenColor,
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
                         ),

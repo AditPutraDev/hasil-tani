@@ -32,4 +32,33 @@ class BottomSheets {
       ),
     );
   }
+
+  static about() {
+    return Container(
+      decoration: BoxDecoration(
+        color: whiteColor,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(15),
+          topRight: Radius.circular(15),
+        ),
+      ),
+      child: Column(
+        children: [
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.person),
+            title: Text('Aditya Dev'),
+          ),
+          ListTile(
+            leading: Icon(Icons.smartphone_sharp),
+            title: Text('Hasil Tani App'),
+          ),
+          ListTile(
+            leading: Icon(Icons.book_rounded),
+            title: Text('Flutter batch 5 udacoding'),
+          )
+        ],
+      ),
+    );
+  }
 }

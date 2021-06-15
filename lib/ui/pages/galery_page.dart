@@ -27,10 +27,15 @@ class GaleryPage extends StatelessWidget {
                       actions: [
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: CircleAvatar(
-                            backgroundColor: Colors.black26,
-                            child:
-                                Icon(Icons.person_rounded, color: whiteColor),
+                          child: GestureDetector(
+                            child: CircleAvatar(
+                              backgroundColor: Colors.black26,
+                              child:
+                                  Icon(Icons.person_rounded, color: whiteColor),
+                            ),
+                            onTap: () => Get.bottomSheet(
+                              BottomSheets.about(),
+                            ),
                           ),
                         )
                       ],

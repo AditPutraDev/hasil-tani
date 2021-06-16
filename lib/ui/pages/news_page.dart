@@ -15,7 +15,14 @@ class NewsPage extends StatelessWidget {
             icon: Icon(Icons.home_rounded)),
         actions: [
           IconButton(
-            onPressed: () => authController.signOut(),
+            onPressed: () => Get.defaultDialog(
+              title: 'Konfirmasi',
+              titleStyle: mainStyle,
+              middleText: 'Apakah Anda yakin ingin keluar ?',
+              onCancel: () => Get.back(),
+              onConfirm: () => authController.signOut(),
+              confirmTextColor: whiteColor,
+            ),
             icon: Icon(Icons.exit_to_app_rounded),
           )
         ],

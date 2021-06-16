@@ -1,8 +1,8 @@
 part of 'controllers.dart';
 
 class AuthController extends GetxController {
-  final username = TextEditingController(text: 'aditya14');
-  final password = TextEditingController(text: '123456');
+  final username = TextEditingController();
+  final password = TextEditingController();
   final fullname = TextEditingController();
   final email = TextEditingController();
   final address = TextEditingController();

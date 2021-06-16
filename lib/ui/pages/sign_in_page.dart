@@ -36,9 +36,8 @@ class SignInPage extends StatelessWidget {
                       ),
                       contentPadding: EdgeInsets.fromLTRB(30, 16, 0, 16),
                       hintStyle: new TextStyle(color: Colors.grey[800]),
-                      hintText: "Email",
+                      hintText: "Username",
                     ),
-                    keyboardType: TextInputType.emailAddress,
                   ),
                 ),
                 Padding(
@@ -81,6 +80,7 @@ class SignInPage extends StatelessWidget {
                           title: 'Sign In',
                           icon: Icons.arrow_forward,
                           onPressed: () {
+                            FocusScope.of(context).requestFocus(FocusNode());
                             if (authController.username.text != '' &&
                                 authController.password.text != '') {
                               authController.signIn(

@@ -5,10 +5,8 @@ class SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final authController = Get.put(AuthController());
     authController.splash();
-    return Scaffold(
-      body: Center(
-        child: Loading.threeBounce,
-      ),
+    return Container(
+      child: Loading.farmerWait,
     );
   }
 }

@@ -54,7 +54,7 @@ class DictionaryPage extends StatelessWidget {
                             dictioncaryController.empty,
                             fit: BoxFit.contain,
                           ),
-                          Text('data kosong'),
+                          Text('Data tidak ditemukan'),
                         ],
                       ),
                     ),

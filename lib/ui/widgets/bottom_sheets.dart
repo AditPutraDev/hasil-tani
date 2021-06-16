@@ -44,7 +44,6 @@ class BottomSheets {
       ),
       child: Column(
         children: [
-          Divider(),
           ListTile(
             leading: Icon(Icons.person),
             title: Text('Aditya Dev'),

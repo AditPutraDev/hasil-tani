@@ -32,4 +32,19 @@ class Loading {
       ),
     ),
   );
+
+  static Widget farmerWait = Container(
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        CustomListCard.imageItem(
+          'https://image.flaticon.com/icons/png/512/843/843349.png',
+          fit: BoxFit.contain,
+        ),
+        Text('Please wait'),
+        Loading.threeBounce
+      ],
+    ),
+  );
 }

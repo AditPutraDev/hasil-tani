@@ -25,7 +25,10 @@ class NewsPage extends StatelessWidget {
           Obx(
             () {
               if (newsController.isLoading.value)
-                return Center(child: Loading.threeBounce);
+                return Padding(
+                  padding: EdgeInsets.only(top: height / 3),
+                  child: Loading.farmerWait,
+                );
               else
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,10 +78,10 @@ class NewsPage extends StatelessWidget {
                                             topLeft: Radius.circular(8),
                                             topRight: Radius.circular(8),
                                           ),
-                                          image: DecorationImage(
-                                              image:
-                                                  NetworkImage('${item.image}'),
-                                              fit: BoxFit.cover),
+                                        ),
+                                        child: CustomListCard.imageItem(
+                                          '${item.image}',
+                                          iWidth: double.infinity,
                                         ),
                                       ),
                                     ),

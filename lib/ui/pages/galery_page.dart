@@ -7,8 +7,8 @@ class GaleryPage extends StatelessWidget {
     return Scaffold(
       body: Obx(
         () {
-          if (galeryController.isLoading.value == true)
-            return Center(child: Loading.threeBounce);
+          if (galeryController.isLoading.value)
+            return Center(child: Loading.farmerWait);
           else
             return DefaultTabController(
               length: 5,

@@ -87,10 +87,8 @@ class TabGalery extends StatelessWidget {
                               topLeft: Radius.circular(8),
                               bottomLeft: Radius.circular(8),
                             ),
-                            image: DecorationImage(
-                                image: NetworkImage('${item.foto}'),
-                                fit: BoxFit.cover),
                           ),
+                          child: CustomListCard.imageItem('${item.foto}'),
                         ),
                         Expanded(
                           child: Padding(

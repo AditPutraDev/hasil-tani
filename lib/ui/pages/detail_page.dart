@@ -10,31 +10,43 @@ class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(
-      children: [
-        Container(color: greenColor),
-        SafeArea(
-          child: Container(color: Colors.white),
-        ),
-        ListView(
-          children: [
-            (type == DetailInfoType.galery)
-                ? buildDetail(
-                    '${galery?.idGalery}',
-                    '${galery?.foto}',
-                    '${galery?.name}',
-                    '${galery?.description}',
-                    Icons.loyalty_rounded)
-                : buildDetail('${news?.idNews}', '${news?.image}',
-                    '${news?.title}', '${news?.description}', Icons.star)
-          ],
-        )
-      ],
-    ));
+      body: ListView(
+        children: [
+          (type == DetailInfoType.galery)
+              ? buildDetail(
+                  '${galery?.name}',
+                  '${galery?.description}',
+                  Icons.loyalty_rounded,
+                  Container(
+                    width: double.infinity,
+                    height: 240,
+                    child: Hero(
+                      tag: '${galery?.idGalery}',
+                      child:
+                          Image.network('${galery?.foto}', fit: BoxFit.cover),
+                    ),
+                  ),
+                )
+              : buildDetail(
+                  '${news?.title}',
+                  '${news?.description}',
+                  Icons.star,
+                  Container(
+                    width: double.infinity,
+                    height: 240,
+                    child: Hero(
+                      tag: '${news?.idNews}',
+                      child: Image.network('${news?.image}', fit: BoxFit.cover),
+                    ),
+                  ),
+                )
+        ],
+      ),
+    );
   }
 
-  Widget buildDetail(String id, String image, String title, String description,
-      IconData icon) {
+  Widget buildDetail(
+      String title, String description, IconData icon, Widget child) {
     return Container(
       height: height,
       child: Column(
@@ -44,25 +56,17 @@ class DetailPage extends StatelessWidget {
             children: [
               Stack(
                 children: [
-                  Container(
-                    width: double.infinity,
-                    height: 240,
-                    child: Hero(
-                      tag: id,
-                      child: Image.network(image, fit: BoxFit.cover),
-                    ),
-                  ),
+                  child,
                   Container(
                     height: 241,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment(0, 1),
-                            end: Alignment(0, 0.06),
-                            colors: [
-                          Colors.white,
-                          Colors.white.withOpacity(0)
-                        ])),
+                      gradient: LinearGradient(
+                        begin: Alignment(0, 1),
+                        end: Alignment(0, 0.06),
+                        colors: [Colors.white, Colors.white.withOpacity(0)],
+                      ),
+                    ),
                   )
                 ],
               ),

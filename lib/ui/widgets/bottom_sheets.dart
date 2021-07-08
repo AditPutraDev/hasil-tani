@@ -50,11 +50,11 @@ class BottomSheets {
           ),
           ListTile(
             leading: Icon(Icons.smartphone_sharp),
-            title: Text('Hasil Tani App'),
+            title: Text('Hasil Tani Pedia App'),
           ),
           ListTile(
             leading: Icon(Icons.book_rounded),
-            title: Text('Flutter batch 5 udacoding'),
+            title: Text('Flutter Pemula Dicoding'),
           )
         ],
       ),

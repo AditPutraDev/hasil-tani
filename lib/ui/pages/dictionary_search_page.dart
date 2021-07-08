@@ -11,10 +11,10 @@ class DictionarySearchPage extends StatelessWidget {
           title: Container(
             decoration: BoxDecoration(
               color: whiteColor,
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(25),
             ),
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8),
+              padding: EdgeInsets.symmetric(horizontal: 34),
               child: Row(
                 children: [
                   Flexible(

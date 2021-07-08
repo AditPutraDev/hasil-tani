@@ -10,7 +10,7 @@ class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
+      body: Column(
         children: [
           (type == DetailInfoType.galery)
               ? buildDetail(
@@ -49,8 +49,7 @@ class DetailPage extends StatelessWidget {
       String title, String description, IconData icon, Widget child) {
     return Container(
       height: height,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: ListView(
         children: [
           Stack(
             children: [
@@ -91,9 +90,9 @@ class DetailPage extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(title, style: blackBoldStyle),
+                Expanded(child: Text(title, style: blackBoldStyle)),
                 SizedBox(width: 12),
-                Icon(icon, color: greenColor),
+                Expanded(child: Icon(icon, color: greenColor)),
               ],
             ),
           ),
@@ -101,6 +100,7 @@ class DetailPage extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 12),
             child: Text(description, textAlign: TextAlign.justify),
           ),
+          SizedBox(height: 30),
         ],
       ),
     );

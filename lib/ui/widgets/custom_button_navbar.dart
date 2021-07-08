@@ -67,7 +67,7 @@ class CustomBottonNavbar extends StatelessWidget {
               color: Colors.white,
               child: Column(
                 children: [
-                  Icon(Icons.person_rounded,
+                  Icon(Icons.public_rounded,
                       color: selectedIndex == 2 ? greenColor : silverColor),
                   SizedBox(height: 3),
                   CircleAvatar(

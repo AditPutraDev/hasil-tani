@@ -21,7 +21,7 @@ class GaleryPage extends StatelessWidget {
                       brightness: Brightness.light,
                       expandedHeight: 100,
                       title: Text(
-                        'Hasil Tani',
+                        'Hasil Tani Pedia',
                         style: mainStyle.copyWith(fontWeight: FontWeight.bold),
                       ),
                       actions: [
